@@ -19,7 +19,12 @@
                     Новости
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.registration.index') }}">
+                    <span data-feather="file" class="align-text-bottom"></span>
+                    Регистрация
+                </a>
+            </li>
         </ul>
 
     </div>

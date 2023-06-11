@@ -19,4 +19,5 @@ final class NewsController extends Controller
     {
         return view('news.show', ['newsItem' => $this->getNews($id)]);
     }
+
 }
