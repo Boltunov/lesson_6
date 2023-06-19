@@ -5,29 +5,26 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class NewsController extends Controller
-
+class DischargeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index():View
     {
-        $model = app(News::class);
-        dd($model->getNews(true));
-        return view('admin.news.index', ['newsList'=> $model->getNews(true)]);
+        return view('admin.discharge.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create():View
     {
-        return  \view('admin.news.create');
+        //
     }
 
     /**
@@ -36,9 +33,9 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=> ['required', 'string']
+            'title'=>['required', 'string'],
         ]);
-        return response()->json($request->only(['title', 'author', 'status', 'description']));
+        return Response()->download('favicon.ico');
     }
 
     /**
