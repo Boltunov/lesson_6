@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\NewsStatus;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class News extends Model
 {
@@ -17,22 +17,32 @@ class News extends Model
 
     protected $table = 'news';
 
-    public function getNews(bool $isJoin = false): Collection
+    protected $fillable = [
+        'title',
+        'author',
+        'status',
+        'description',
+    ];
+
+    /* Relations */
+    public function categories(): BelongsToMany
     {
-        if($isJoin === true) {
-            return DB::table($this->table)
-                //->whereIn('id', [5, 8, 9])
-                //->where('status', NewsStatus::ACTIVE->value)
-                //->select('news.*', 'categories.title as categoryTitle')
-                /*->join('category_has_news', 'category_has_news.news_id', '=', 'news.id')
-                ->leftJoin('categories', 'category_has_news.category_id', '=', 'categories.id')*/
-                ->get();
-        }
-        return DB::table($this->table)->get();
+        return $this->belongsToMany(Category::class, 'category_has_news',
+        'news_id', 'category_id');
+    }
+    /*Scopes*/
+    public function scopeActive(Builder $query): void
+    {
+        $query->where('status', NewsStatus::ACTIVE->value);
     }
 
-    public function getNewsById(int $id):mixed
+    public function scopeDraft(Builder $query): void
     {
-        return DB::table($this->table)->find($id);
+        $query->where('status', NewsStatus::DRAFT->value);
+    }
+
+    public function scopeBlocked(Builder $query): void
+    {
+        $query->where('status', NewsStatus::BLOCKED->value);
     }
 }
