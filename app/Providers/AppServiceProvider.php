@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Http\Controllers\Admin\DischargeController;
 use App\Queries\CategoriesQueryBuilder;
+use App\Queries\DischargeQueriesBuilder;
 use App\Queries\NewsQueryBuilder;
 use App\Queries\QueryBuilder;
 use Illuminate\Pagination\Paginator;
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(QueryBuilder::class, CategoriesQueryBuilder::class);
         $this->app->bind(QueryBuilder::class, NewsQueryBuilder::class);
+
     }
 
     /**
