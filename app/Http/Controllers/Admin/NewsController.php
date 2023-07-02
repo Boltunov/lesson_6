@@ -56,7 +56,7 @@ class NewsController extends Controller
             'title'=> ['required', 'string']
         ]);
         $categories = $request->input('categories');
-//        $categories = $request->input( 'categories');
+
 
         $news = $request->only(['title', 'author', 'status', 'description']);
 
