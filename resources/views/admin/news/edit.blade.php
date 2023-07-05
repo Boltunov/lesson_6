@@ -34,9 +34,9 @@
         <div class="form-group">
             <label for="status">Статус</label>
             <select class="form-control" name="status" id="status">
-                <option @if($news->status === 'DRAFT') selected @endif>DRAFT</option>
-                <option @if($news->status === 'ACTIVE') selected @endif>ACTIVE</option>
-                <option @if($news->status === 'BLOCKED') selected @endif>BLOCKED</option>
+                <option @if($news->status === 'draft') selected @endif value="{{ \App\Enums\NewsStatus::DRAFT->value }}">DRAFT</option>
+                <option @if($news->status === 'active') selected @endif value="{{\App\Enums\NewsStatus::ACTIVE->value}}">ACTIVE</option>
+                <option @if($news->status === 'blocked') selected @endif value="{{\App\Enums\NewsStatus::BLOCKED->value}}">BLOCKED</option>
             </select>
         </div>
         <div class="form-group">
