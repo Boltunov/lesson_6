@@ -9,8 +9,8 @@
 
         </div>
     </div>
-
     <div class="table-responsive">
+        @include('admin.message')
         <table class="table table-bordered">
             <tr>
                 <th>#ID</th>
