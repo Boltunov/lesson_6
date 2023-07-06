@@ -45,7 +45,7 @@
                 element.addEventListener('click', function () {
                     const id = this.getAttribute('rel');
                     if (confirm(`Подтверждаете удаление записи с #ID= ${id}?`)) {
-                        send(`admin/news/${id}`).then( () => {
+                        send(`/admin/news/${id}`).then( () => {
                             location.reload();
                         });
                     } else {
