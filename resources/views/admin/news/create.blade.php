@@ -17,10 +17,12 @@
                     <option @if(in_array($category->id, old('categories'), [] )) selected @endif value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
            </select>
+            @error('categories') <x-alert type="danger" :message="$message"></x-alert> @enderror
         </div>
         <div class="form-group">
             <label for="title">Заголовок</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" />
+            @error('title') <x-alert type="danger" :message="$message"></x-alert> @enderror
         </div>
         <div class="form-group">
             <label for="author">Автор</label>
