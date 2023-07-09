@@ -29,5 +29,6 @@
                 </tr>
             @endforeach
         </table>
+        {{ $categoryList->links() }}
     </div>
 @endsection

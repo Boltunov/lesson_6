@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Categories\Store;
+use App\Http\Requests\Categories\Update;
 use App\Models\Category;
 use App\Queries\CategoriesQueryBuilder;
 use App\Queries\NewsQueryBuilder;
@@ -48,21 +50,13 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Store $request): RedirectResponse
     {
-        $request->validate([
-            'title' => ['required', 'string']
-        ]);
+        $categories = Category::create($request->validated());
+        if ($categories) {
+                $categories->categories()->attach($request->getNews());
 
-        $news = $request->input('news');
-
-        $categories =$request->only(['title', 'description']);
-        $categories = Category::create($categories);
-        if ($categories !== false) {
-            if($news !== null) {
-                $categories->news()->attach($news);
                 return \redirect()->route('admin.categories.index')->with('success', 'Categories has been created');
-            }
         }
         return \back()->with('error', 'Categories has not been created');
     }
@@ -89,13 +83,11 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category):RedirectResponse
+    public function update(Update $request, Category $category):RedirectResponse
     {
-        $news = $request->input('news');
-
-        $categories = $category->fill($request->only(['title', 'description']));
+        $categories = $category->fill($request->validated()));
         if ($categories->save()) {
-            $categories->news()->sync($news);
+            $categories->news()->sync($request->getNews());
 
             return \redirect()->route('admin.categories.index')->with('success', 'Categories has been update');
         }
