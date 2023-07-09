@@ -13,7 +13,7 @@
         <div class="form-group">
             <label for="title">Заголовок</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" />
-            @error('title') <x-alert type="danger" :message="$message"></x-alert> @enderror
+            @error('title') <strong style="color: red;">{{ $message }}</strong> @enderror
         </div>
         <div class="form-group">
             <label for="categories">Новости</label>
@@ -22,7 +22,7 @@
                     <option value="{{ $new->id }}">{{ $new->title }}</option>
                 @endforeach
             </select>
-            @error('categories') <x-alert type="danger" :message="$message"></x-alert> @enderror
+            @error('categories') <strong style="color: red;">{{ $message }}</strong> @enderror
         </div>
         <div class="form-group">
             <label for="image">Изображение</label>

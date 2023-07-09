@@ -14,7 +14,7 @@
         <div class="form-group">
             <label for="title">Заголовок</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ $categories->title }}" />
-            @error('title') <x-alert type="danger" :message="$message"></x-alert> @enderror
+            @error('title') <strong style="color: red;">{{ $message }}</strong> @enderror
         </div>
         <div class="form-group">
             <label for="news">Новости</label>
@@ -23,7 +23,7 @@
                     <option @if(in_array($new->id, $categories->news->pluck('id')->toArray())) selected @endif value="{{ $new->id }}">{{ $new->title }}</option>
                 @endforeach
             </select>
-            @error('categories') <x-alert type="danger" :message="$message"></x-alert> @enderror
+            @error('news') <strong style="color: red;">{{ $message }}</strong> @enderror
         </div>
         <div class="form-group">
             <label for="image">Изображение</label>

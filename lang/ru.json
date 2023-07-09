@@ -2,5 +2,9 @@
     "News has been updated": "Новость была обновлена",
     "News has not been updated": "Новость не была обновлена",
     "News has been create": "Новость была создана",
-    "News has not been create": "Новость не была создана"
+    "News has not been create": "Новость не была создана",
+    "Categories has been updated": "Категория была обновлена",
+    "Categories has not been updated": "Категория не была обновлена",
+    "Categories has been create": "Каегория была создана",
+    "Categories has not been create": "Категория не была создана"
 }
