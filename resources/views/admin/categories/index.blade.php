@@ -25,9 +25,10 @@
                     <td>{{ $category->title }}</td>
                     <td>{{ $category->description }}</td>
                     <td>{{ $category->created_at }}</td>
-                    <td><a href="#">Edit</a>&nbsp; <a href="javascript:;" style="color:red">Delete</a></td>
+                    <td><a href="{{ route('admin.categories.edit', ['category' => $category]) }}">Edit</a>&nbsp; <a href="javascript:;" style="color:red">Delete</a></td>
                 </tr>
             @endforeach
         </table>
+        {{ $categoryList->links() }}
     </div>
 @endsection
