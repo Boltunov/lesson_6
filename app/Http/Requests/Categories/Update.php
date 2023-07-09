@@ -34,4 +34,16 @@ class Update extends FormRequest
     {
         return $this->validated('news');
     }
+    public function messages():array
+    {
+        return [
+            'required' => 'Нужно заполнить поле :attribute',
+        ];
+    }
+    public function attributes():array
+    {
+        return [
+            'title' => 'Наименование',
+        ];
+    }
 }

@@ -56,9 +56,9 @@ class CategoryController extends Controller
         if ($categories) {
                 $categories->categories()->attach($request->getNews());
 
-                return \redirect()->route('admin.categories.index')->with('success', 'Categories has been created');
+                return \redirect()->route('admin.categories.index')->with('success', __('Categories has been create'));
         }
-        return \back()->with('error', 'Categories has not been created');
+        return \back()->with('error', __('Categories has not been create'));
     }
 
     /**
@@ -85,13 +85,13 @@ class CategoryController extends Controller
      */
     public function update(Update $request, Category $category):RedirectResponse
     {
-        $categories = $category->fill($request->validated()));
+        $categories = $category->fill($request->validated());
         if ($categories->save()) {
             $categories->news()->sync($request->getNews());
 
-            return \redirect()->route('admin.categories.index')->with('success', 'Categories has been update');
+            return \redirect()->route('admin.categories.index')->with('success', __('Categories has been updated'));
         }
-        return \back()->with('error', 'Categories has not been update');
+        return \back()->with('error', __('Categories has not been updated'));
     }
 
     /**
