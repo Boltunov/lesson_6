@@ -17,6 +17,6 @@ class CategoriesQueryBuilder extends QueryBuilder
 
     public function getAll(): Collection
     {
-        return $this->getModel()->get();
+        return $this->getModel()->with('news')->get();
     }
 }
