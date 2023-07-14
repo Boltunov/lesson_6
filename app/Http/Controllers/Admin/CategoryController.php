@@ -54,7 +54,7 @@ class CategoryController extends Controller
     {
         $categories = Category::create($request->validated());
         if ($categories) {
-                $categories->categories()->attach($request->getNews());
+                $categories->category()->attach($request->getNews());
 
                 return \redirect()->route('admin.categories.index')->with('success', __('Categories has been create'));
         }
