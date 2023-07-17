@@ -6,5 +6,14 @@
     "Categories has been updated": "Категория была обновлена",
     "Categories has not been updated": "Категория не была обновлена",
     "Categories has been create": "Каегория была создана",
-    "Categories has not been create": "Категория не была создана"
+    "Categories has not been create": "Категория не была создана",
+    "Register": "Регистрация",
+    "Name": "Имя",
+    "Email Address": "Email адрес",
+    "Password": "Пароль",
+    "Confirm Password": "Повторите пароль",
+    "Login": "Вход",
+    "Remember Me": "Запомнить меня",
+    "Forgot Your Password?": "Забыли пароль?",
+    "Account": "Панель управления"
 }

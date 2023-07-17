@@ -30,9 +30,9 @@ add your own hostname on your `/etc/hosts`
 
 Service|Address outside containers
 -------|--------------------------
-Webserver|[localhost:6666](http://localhost:6666)
-Mailhog web interface|[localhost:6667](http://localhost:6667)
-MySQL|**host:** `localhost`; **port:** `6668`
+Webserver|[localhost:7777](http://localhost:7777)
+Mailhog web interface|[localhost:7778](http://localhost:7778)
+MySQL|**host:** `localhost`; **port:** `7779`
 
 ## Hosts within your environment ##
 
@@ -112,9 +112,10 @@ To configure **Xdebug 3** you need add these lines in php-fpm/php-ini-overrides.
 ### For linux:
 
 ```
-xdebug.mode = debug
-xdebug.remote_connect_back = true
-xdebug.start_with_request = yes
+xdebug.mode=debug
+xdebug.discover_client_host=true
+xdebug.start_with_request=yes
+xdebug.client_port=9000
 ```
 
 ### For macOS and Windows:
@@ -143,5 +144,21 @@ environment:
 * Select "Use path mappings" and set mappings between a path to your project on a host system and the Docker container.
 * Finally, add “Xdebug helper” extension in your browser, set breakpoints and start debugging
 
+### Create a launch.json for visual studio code
 
+  {
+      "version": "0.2.0",
+      "configurations": [
+          {
+              "name": "Docker",
+              "type": "php",
+              "request": "launch",
+              "port": 9000,
+              // Server Remote Path -> Local Project Path
+              "pathMappings": {
+                  "/application/public": "${workspaceRoot}/"
+              },
+          }
+      ]
+  }
 

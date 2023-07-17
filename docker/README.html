@@ -58,15 +58,15 @@ add your own hostname on your <code>/etc/hosts</code></p>
 <tbody>
 <tr>
   <td>Webserver</td>
-  <td><a href="http://localhost:6666">localhost:6666</a></td>
+  <td><a href="http://localhost:7777">localhost:7777</a></td>
 </tr>
 <tr>
   <td>Mailhog web interface</td>
-  <td><a href="http://localhost:6667">localhost:6667</a></td>
+  <td><a href="http://localhost:7778">localhost:7778</a></td>
 </tr>
 <tr>
   <td>MySQL</td>
-  <td><strong>host:</strong> <code>localhost</code>; <strong>port:</strong> <code>6668</code></td>
+  <td><strong>host:</strong> <code>localhost</code>; <strong>port:</strong> <code>7779</code></td>
 </tr>
 </tbody>
 </table>
@@ -178,9 +178,10 @@ xdebug.remote_autostart = 1
 
 <h3>For linux:</h3>
 
-<pre><code>xdebug.mode = debug
-xdebug.remote_connect_back = true
-xdebug.start_with_request = yes
+<pre><code>xdebug.mode=debug
+xdebug.discover_client_host=true
+xdebug.start_with_request=yes
+xdebug.client_port=9000
 </code></pre>
 
 <h3>For macOS and Windows:</h3>
@@ -208,6 +209,24 @@ docker-compose.yml</li>
 <li>Select "Use path mappings" and set mappings between a path to your project on a host system and the Docker container.</li>
 <li>Finally, add “Xdebug helper” extension in your browser, set breakpoints and start debugging</li>
 </ul>
+
+<h3>Create a launch.json for visual studio code</h3>
+
+<p>{
+      "version": "0.2.0",
+      "configurations": [
+          {
+              "name": "Docker",
+              "type": "php",
+              "request": "launch",
+              "port": 9000,
+              // Server Remote Path -> Local Project Path
+              "pathMappings": {
+                  "/application/public": "${workspaceRoot}/"
+              },
+          }
+      ]
+  }</p>
     </div>
     <div class="pure-u-1-24"></div>
 </div>
