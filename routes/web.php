@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\IndexController as AdminController;
+use App\Http\Controllers\Admin\ParserController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -40,10 +42,13 @@ Route::group(['middleware' => 'auth'], static function () {
     ], static function () {
         Route::get('/', AdminController::class)
             ->name('index');
+        Route::get('/parser', ParserController::class)
+            ->name('parser');
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/news', AdminNewsController::class);
         Route::resource('/registration', AdminRegistrationController::class);
         Route::resource('/discharge', AdminDischargeController::class);
+//        Route::resource('/profile', AdminProfileController::class);
     });
 });
 
@@ -56,6 +61,8 @@ Route::get('/news/{news}', [NewsController::class, 'show'])
     ->name('news.show');
 Route::get('/registration', [NewsController::class, 'registration'])
     ->name('news.registration');
+
+
 
 Route::match(["POST", 'GET', 'PUT'], '/test', function (\Illuminate\Http\Request $request) {
     return (int) $request->isMethod('GET');
