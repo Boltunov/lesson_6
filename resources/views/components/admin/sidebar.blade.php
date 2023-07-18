@@ -31,6 +31,12 @@
                     Выгрузка
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('admin.profile.*')) active @endif" href="#">
+                    <span data-feather="file" class="align-text-bottom"></span>
+                    Данные
+                </a>
+            </li>
         </ul>
 
     </div>
