@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\RegistrationController as AdminRegistrationController;
 use App\Http\Controllers\Admin\DischargeController as AdminDischargeController;
+use App\Http\Controllers\SocialProvidersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,15 @@ Route::group(['middleware' => 'auth'], static function () {
 });
 
 // Guest's routes
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/{driver}/redirect', [SocialProvidersController::class, 'redirect'])
+        ->where('driver', '\w+')
+        ->name('social-providers.redirect');
+    Route::get('{driver}/callback', [SocialProvidersController::class, 'callback'])
+        ->where('driver', '\w+')
+        ->name('social-providers.callback');
+});
 
 Route::get('/news', [NewsController::class, 'index'])
     ->name('news.index');
