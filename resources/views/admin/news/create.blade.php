@@ -14,7 +14,7 @@
             <label for="categories">Категории</label>
            <select class="form-control" multiple name="categories[]" id="categories">
                 @foreach($categories as $category)
-                    <option @if(in_array($category->id, old('categories'), [] )) selected @endif value="{{ $category->id }}">{{ $category->title }}</option>
+                   <option @if(in_array($category->id, old('categories') ?? [])) selected @endif value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
            </select>
             @error('categories') <x-alert type="danger" :message="$message"></x-alert> @enderror

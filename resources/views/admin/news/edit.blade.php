@@ -32,6 +32,7 @@
         </div>
         <div class="form-group">
             <label for="image">Изображение</label>
+            <img src="{{ Storage::disk('public')->url($news->image) }}" />
             <input type="file" name="image" id="image" class="form-control" />
         </div>
         <div class="form-group">
@@ -51,3 +52,12 @@
         <button type="submit" class="btn btn-success">Сохранить</button>
     </form>
 @endsection
+@push('js')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+@endpush

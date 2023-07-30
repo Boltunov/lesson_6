@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Services\Contracts\Parser;
+use Illuminate\Support\Facades\Storage;
 use Orchestra\Parser\Xml\Facade;
 
 
@@ -38,5 +39,10 @@ class ParserService implements Parser
                 'uses' => 'channel.item[title, link, author, description, pubDate]'
             ],
         ]);
+
+        $explode = explode("/", $this->link);
+        $fileName = end($explode);
+
+        Storage::append('parse/' . $fileName . ".txt", json_encode($data));
     }
 }
